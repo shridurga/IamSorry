@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Rohit ♡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #2b32b2, #1488cc, #7b1fa2, #3f51b5);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Subtle ambient elements */
+        .bg-heart {
+            position: fixed;
+            font-size: 1.2em;
+            opacity: 0.25;
+            color: #ffffff;
+            animation: floatAround 18s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatAround {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(80px, -80px) rotate(45deg); }
+            50% { transform: translate(150px, 40px) rotate(90deg); }
+            75% { transform: translate(-40px, -40px) rotate(135deg); }
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            max-width: 550px;
+            width: 90%;
+            animation: floatIn 1.2s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        #mainText {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            #mainText {
+                font-size: 1.7em;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            min-height: 160px;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .buttons {
+                min-height: 280px;
+                flex-direction: column;
+            }
+        }
+
+        button {
+            font-family: inherit;
+            font-size: 1.1em;
+            padding: 16px 36px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        #yesBtn {
+            background: #2b32b2;
+            color: white;
+            position: relative;
+            z-index: 5;
+        }
+
+        #yesBtn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(43, 50, 178, 0.3);
+            background: #1a237e;
+        }
+
+        #noBtn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #555;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            position: absolute;
+            transition: all 0.2s ease-out;
+            z-index: 10;
+        }
+
+        #subText {
+            margin-top: 15px;
+            font-size: 0.95em;
+            color: #666;
+            font-weight: 400;
+            min-height: 24px;
+            letter-spacing: 0.2px;
+        }
+
+        #finalMessage {
+            font-size: 1.3em;
+            color: #2b32b2;
+            margin-top: 20px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.8s ease;
+        }
+
+        #finalMessage.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .heart-particle {
+            position: fixed;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.8);
+            animation: floatUp 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0.8;
+                transform: translateY(0) scale(0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-600px) scale(1.2);
+            }
+        }
+
+        .shake {
+            animation: softShake 0.4s ease;
+        }
+
+        @keyframes softShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-heart" style="top: 15%; left: 12%; animation-delay: 0s;">✨</div>
+    <div class="bg-heart" style="top: 75%; left: 82%; animation-delay: 3s;">♡</div>
+    <div class="bg-heart" style="top: 35%; left: 85%; animation-delay: 6s;">✨</div>
+    <div class="bg-heart" style="top: 65%; left: 18%; animation-delay: 9s;">♡</div>
+
+    <div class="container">
+        <div id="mainText">I'm really sorry, Rohit.<br>Can you forgive me?</div>
+        <div class="buttons">
+            <button id="yesBtn">Yes, I forgive you</button>
+            <button id="noBtn">I need a moment</button>
+        </div>
+        <div id="subText"></div>
+        <div id="finalMessage"></div>
+    </div>
+
+    <script>
+        const mainText = document.getElementById('mainText');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const subText = document.getElementById('subText');
+        const finalMessage = document.getElementById('finalMessage');
+        const buttonsContainer = document.querySelector('.buttons');
+
+        const sorryMessages = [
+            "I'm really sorry, Rohit.<br>Can you forgive me?",
+            "Rohit, I promise to do better.",
+            "You mean so much to me, Rohit.",
+            "I hate that I upset you, Rohit.",
+            "Please give me a chance to make it up to you.",
+            "Life is so quiet without your smile, Rohit.",
+            "I'm truly sorry, Rohit.",
+            "I value you more than words can say."
+        ];
+
+        let currentMessageIndex = 0;
+        let noClickCount = 0;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        function createAmbientParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'heart-particle';
+            particle.textContent = ['♡', '✨'][Math.floor(Math.random() * 2)];
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = (window.innerHeight - 50) + 'px';
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 3500);
+        }
+
+        function moveNoButton() {
+            const rect = buttonsContainer.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+            const yesRect = yesBtn.getBoundingClientRect();
+            const maxX = rect.width - btnRect.width - 20;
+            const maxY = rect.height - btnRect.height - 20;
+            
+            let newX, newY;
+            let attempts = 0;
+            
+            do {
+                newX = Math.random() * maxX + 10;
+                newY = Math.random() * maxY + 10;
+                attempts++;
+                
+                const noLeft = rect.left + newX;
+                const noRight = noLeft + btnRect.width;
+                const noTop = rect.top + newY;
+                const noBottom = noTop + btnRect.height;
+                
+                const padding = 20;
+                
+                const overlaps = !(
+                    noRight + padding < yesRect.left ||
+                    noLeft - padding > yesRect.right ||
+                    noBottom + padding < yesRect.top ||
+                    noTop - padding > yesRect.bottom
+                );
+                
+                if (!overlaps || attempts >= 40) break;
+            } while (true);
+            
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+            
+            noClickCount++;
+            const newScale = Math.max(0.5, 1 - (noClickCount * 0.08));
+            noBtn.style.transform = `scale(${newScale})`;
+        }
+
+        function initNoButton() {
+            const isMobileView = window.innerWidth <= 768;
+            noBtn.style.left = isMobileView ? '50%' : '65%';
+            noBtn.style.top = isMobileView ? '70%' : '50%';
+            noBtn.style.transform = 'translate(-50%, -50%) scale(1)';
+            noClickCount = 0;
+        }
+
+        initNoButton();
+        window.addEventListener('resize', initNoButton);
+
+        function handleNoInteraction() {
+            moveNoButton();
+            currentMessageIndex = (currentMessageIndex + 1) % sorryMessages.length;
+            mainText.innerHTML = sorryMessages[currentMessageIndex];
+            
+            mainText.classList.add('shake');
+            setTimeout(() => mainText.classList.remove('shake'), 400);
+
+            if (noClickCount <= 3) {
+                subText.innerHTML = "Please, Rohit?";
+            } else {
+                subText.innerHTML = "I'll keep trying until you say yes...";
+            }
+        }
+
+        if (!isMobile) {
+            noBtn.addEventListener('mouseenter', handleNoInteraction);
+        }
+        noBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleNoInteraction();
+        });
+
+        yesBtn.addEventListener('click', function() {
+            mainText.innerHTML = "Thank you, Rohit.";
+            buttonsContainer.style.display = 'none';
+            subText.style.display = 'none';
+
+            finalMessage.innerHTML = "I love you so much ♡";
+            finalMessage.classList.add('show');
+
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => createAmbientParticle(), i * 200);
+            }
+
+            document.body.style.background = 'linear-gradient(-45deg, #1e3c72, #2a5298, #6b5b95, #3f51b5)';
+        });
+    </script>
+</body>
+</html>
