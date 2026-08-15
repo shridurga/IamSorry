@@ -17,7 +17,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(-45deg, #2b32b2, #1488cc, #7b1fa2, #3f51b5);
+            background: linear-gradient(-45deg, #2e1065, #581c87, #7e22ce, #3b0764);
             background-size: 400% 400%;
             animation: gradientShift 12s ease infinite;
             overflow: hidden;
@@ -32,7 +32,7 @@
 
         .bg-heart {
             position: fixed;
-            font-size: 1.4em;
+            font-size: 1.5em;
             opacity: 0.25;
             color: #ffffff;
             animation: floatAround 18s ease-in-out infinite;
@@ -50,7 +50,7 @@
         .container {
             text-align: center;
             padding: 50px 40px;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 28px;
@@ -74,13 +74,13 @@
         }
 
         @keyframes cardGlow {
-            0%, 100% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 0 20px rgba(255, 255, 255, 0.2); }
-            50% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.16), 0 0 35px rgba(255, 255, 255, 0.45); }
+            0%, 100% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 0 20px rgba(168, 85, 247, 0.3); }
+            50% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), 0 0 35px rgba(192, 132, 252, 0.6); }
         }
 
         #mainText {
             font-size: 2.2em;
-            color: #2c3e50;
+            color: #3b0764;
             margin-bottom: 40px;
             font-weight: 500;
             letter-spacing: -0.5px;
@@ -121,7 +121,7 @@
         }
 
         #yesBtn {
-            background: linear-gradient(135deg, #2b32b2, #4a00e0);
+            background: linear-gradient(135deg, #6b21a8, #a855f7);
             color: white;
             position: relative;
             z-index: 5;
@@ -135,13 +135,13 @@
         }
 
         #yesBtn:hover {
-            box-shadow: 0 10px 25px rgba(43, 50, 178, 0.4);
+            box-shadow: 0 10px 25px rgba(126, 34, 206, 0.45);
         }
 
         #noBtn {
             background: rgba(255, 255, 255, 0.9);
-            color: #555;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            color: #581c87;
+            border: 1px solid rgba(126, 34, 206, 0.15);
             position: absolute;
             transition: all 0.2s ease-out;
             z-index: 10;
@@ -150,7 +150,7 @@
         #subText {
             margin-top: 15px;
             font-size: 0.95em;
-            color: #666;
+            color: #6b21a8;
             font-weight: 400;
             min-height: 24px;
             letter-spacing: 0.2px;
@@ -158,7 +158,7 @@
 
         #finalMessage {
             font-size: 1.4em;
-            color: #2b32b2;
+            color: #581c87;
             margin-top: 20px;
             font-weight: 600;
             letter-spacing: 0.5px;
@@ -172,22 +172,22 @@
             transform: translateY(0);
         }
 
-        /* Heart Particle - Behind card (z-index: 1) with upper arc trajectory */
+        /* Heart Particle - Placed behind card (z-index: 1) */
         .emoji-particle {
             position: fixed;
             pointer-events: none;
             z-index: 1;
             user-select: none;
-            animation: particleBlast 3.4s cubic-bezier(0.12, 0.7, 0.25, 1) forwards;
+            animation: particleBlast 3.8s cubic-bezier(0.1, 0.6, 0.2, 1) forwards;
         }
 
         @keyframes particleBlast {
             0% {
                 opacity: 1;
-                transform: translate(-50%, -50%) translate(0, 0) scale(0.3) rotate(var(--tilt));
+                transform: translate(-50%, -50%) translate(0, 0) scale(0.2) rotate(var(--tilt));
             }
-            65% {
-                opacity: 0.9;
+            70% {
+                opacity: 0.85;
             }
             100% {
                 opacity: 0;
@@ -207,10 +207,10 @@
     </style>
 </head>
 <body>
-    <div class="bg-heart" style="top: 15%; left: 12%; animation-delay: 0s;">♡</div>
-    <div class="bg-heart" style="top: 75%; left: 82%; animation-delay: 1.5s;">♥</div>
-    <div class="bg-heart" style="top: 35%; left: 85%; animation-delay: 3s;">♡</div>
-    <div class="bg-heart" style="top: 65%; left: 18%; animation-delay: 4.5s;">♥</div>
+    <div class="bg-heart" style="top: 15%; left: 12%; animation-delay: 0s;">💜</div>
+    <div class="bg-heart" style="top: 75%; left: 82%; animation-delay: 1.5s;">💜</div>
+    <div class="bg-heart" style="top: 35%; left: 85%; animation-delay: 3s;">💜</div>
+    <div class="bg-heart" style="top: 65%; left: 18%; animation-delay: 4.5s;">💜</div>
 
     <div class="container">
         <div id="mainText">I'm really sorry, Rohit.<br>Can you forgive me?</div>
@@ -326,25 +326,34 @@
             handleNoInteraction();
         });
 
+        // Mix of heart types including red hearts
+        const heartEmojis = ['❤️', '💜', '🟣', '💕'];
+
         function createHeartParticle(originX, originY) {
             const particle = document.createElement('div');
             particle.className = 'emoji-particle';
-            particle.textContent = '❤️';
             
-            // Upper semi-circle range: -10 degrees to +190 degrees
+            const selectedEmoji = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            particle.textContent = selectedEmoji;
+            
+            // Upper semi-circle arc (-10° to 190°)
             const baseAngle = -10 + Math.random() * 200; 
             const rad = (baseAngle * Math.PI) / 180;
             
-            // Distance radiating outward in slow motion
-            const distance = Math.random() * 400 + 180;
+            // Radial outward travel distance
+            const distance = Math.random() * 450 + 180;
             const dx = Math.cos(rad) * distance + 'px';
-            const dy = -Math.sin(rad) * distance + 'px'; // Negative to point upwards
+            const dy = -Math.sin(rad) * distance + 'px';
             
-            // Subtle random tilt along the radial path
-            const tilt = (Math.random() * 24 - 12) + 'deg';
+            // Slight natural angle offset
+            const tilt = (Math.random() * 20 - 10) + 'deg';
             
-            const scale = (Math.random() * 1.5 + 0.6).toFixed(2);
-            const fontSize = (Math.random() * 1.6 + 1.2) + 'rem';
+            // Slightly increased size parameters for red hearts
+            const isRedHeart = selectedEmoji === '❤️';
+            const sizeMultiplier = isRedHeart ? 1.35 : 1.0;
+            
+            const scale = ((Math.random() * 0.8 + 0.45) * sizeMultiplier).toFixed(2);
+            const fontSize = ((Math.random() * 0.8 + 1.0) * sizeMultiplier) + 'rem';
 
             particle.style.fontSize = fontSize;
             particle.style.left = originX + 'px';
@@ -355,14 +364,14 @@
             particle.style.setProperty('--tilt', tilt);
 
             document.body.appendChild(particle);
-            setTimeout(() => particle.remove(), 3400);
+            setTimeout(() => particle.remove(), 3800);
         }
 
-        function triggerUpperSemiCircleBlast(x, y, count = 90) {
+        function spawnHeartBatch(x, y, count, timeSpanMs) {
             for (let i = 0; i < count; i++) {
                 setTimeout(() => {
                     createHeartParticle(x, y);
-                }, Math.random() * 900);
+                }, Math.random() * timeSpanMs);
             }
         }
 
@@ -378,15 +387,30 @@
             const originX = containerRect.left + containerRect.width / 2;
             const originY = containerRect.top + containerRect.height / 2;
 
-            // Initial burst outward in upper semi-circle
-            triggerUpperSemiCircleBlast(originX, originY, 130);
+            // Massive Initial Explosion
+            spawnHeartBatch(originX, originY, 800, 1500);
 
-            // Continuous slow-motion stream from center
-            setInterval(() => {
-                triggerUpperSemiCircleBlast(originX, originY, 25);
-            }, 750);
+            // Sustained heavy flow for ~5 seconds
+            const heavyStream = setInterval(() => {
+                spawnHeartBatch(originX, originY, 250, 400);
+            }, 450);
 
-            document.body.style.background = 'linear-gradient(-45deg, #1e3c72, #2a5298, #6b5b95, #3f51b5)';
+            // After 5 seconds, begin gradual decrease and then stop
+            setTimeout(() => {
+                clearInterval(heavyStream);
+                
+                let fadeCount = 180;
+                const fadeInterval = setInterval(() => {
+                    if (fadeCount <= 0) {
+                        clearInterval(fadeInterval);
+                        return;
+                    }
+                    spawnHeartBatch(originX, originY, fadeCount, 600);
+                    fadeCount -= 35;
+                }, 700);
+            }, 5000);
+
+            document.body.style.background = 'linear-gradient(-45deg, #1e1b4b, #3b0764, #581c87, #4c1d95)';
         });
     </script>
 </body>
