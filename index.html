@@ -128,10 +128,10 @@
             color: white;
             position: relative;
             z-index: 5;
+            transform-origin: center center;
         }
 
         #yesBtn:hover {
-            transform: translateY(-4px);
             box-shadow: 0 10px 25px rgba(43, 50, 178, 0.3);
             background: #1a237e;
         }
@@ -303,6 +303,10 @@
 
         function handleNoInteraction() {
             moveNoButton();
+            
+            const yesScale = 1 + (noClickCount * 0.15);
+            yesBtn.style.transform = `scale(${yesScale})`;
+
             currentMessageIndex = (currentMessageIndex + 1) % sorryMessages.length;
             mainText.innerHTML = sorryMessages[currentMessageIndex];
             
